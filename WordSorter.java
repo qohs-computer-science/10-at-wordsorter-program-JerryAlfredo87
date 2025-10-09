@@ -1,4 +1,7 @@
+//Meade Havenstein, Pd. 6, 10/9/25
+//Objective: 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class WordSorter 
 {
@@ -28,9 +31,25 @@ public class WordSorter
 			word = word.replace("!", "");
 			word = word.replace("?", "");
 			word = word.replace("'", "");
+			word.toLowerCase();
 			System.out.println(word);
 			
 			
-		}
-	}
-}
+		}//end while
+		ArrayList <String> words = new ArrayList <String>();
+		String temp = "";
+		for(int i = 0; i < words.size() - 1; i++)
+		{
+			for(int x = i + 1; x < words.size(); x++)
+			{
+				if(words.get(i).compareTo(words.get(x)) > 0)
+				{
+					temp = words.get(i);
+					words.remove(i);
+					words.add(i + 1, temp);
+					i--;
+				}
+			}//end for
+		}//end for
+	}//end main
+}//end class
