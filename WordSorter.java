@@ -8,6 +8,7 @@ public class WordSorter
 	public static void main(String[] args) 
 	{
 		Scanner in = new Scanner(System.in); 
+		ArrayList <String> words = new ArrayList <String>();
 		try
 		{
 			in = new Scanner(new File("article.txt"));	
@@ -31,25 +32,28 @@ public class WordSorter
 			word = word.replace("!", "");
 			word = word.replace("?", "");
 			word = word.replace("'", "");
-			word.toLowerCase();
+			word = word.toLowerCase();
 			System.out.println(word);
+			words.add(word);
+				
 			
 			
 		}//end while
-		ArrayList <String> words = new ArrayList <String>();
-		String temp = "";
-		for(int i = 0; i < words.size() - 1; i++)
+		for(int q = words.size-1; q > 0; q--)
 		{
-			for(int x = i + 1; x < words.size(); x++)
+			
+		}
+
+		ArrayList[]sorted = new ArrayList[26];
+		for(int x = 0; x < sorted.length; x++)
+		{
+			sorted[x] = new ArrayList<String>();
+			for(ArrayList temp: sorted)
 			{
-				if(words.get(i).compareTo(words.get(x)) > 0)
-				{
-					temp = words.get(i);
-					words.remove(i);
-					words.add(i + 1, temp);
-					i--;
-				}
-			}//end for
+				temp.add(words.get(x).compareTo("a"), words.get(x));
+
+				System.out.println(words.get(x));
+			}//end for each
 		}//end for
 	}//end main
 }//end class
