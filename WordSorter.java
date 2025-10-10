@@ -39,10 +39,16 @@ public class WordSorter
 			
 			
 		}//end while
-		for(int q = words.size-1; q > 0; q--)
+		for(int q = words.size()-1; q > 1; q--)
 		{
-			
-		}
+			for(int w = q - 1; w > 0; w--)
+			{
+				if(words.get(q).equals(words.get(w)))
+				{
+					words.remove(q);
+				}//end if
+			}//end for
+		}//end for
 
 		ArrayList[]sorted = new ArrayList[26];
 		for(int x = 0; x < sorted.length; x++)
