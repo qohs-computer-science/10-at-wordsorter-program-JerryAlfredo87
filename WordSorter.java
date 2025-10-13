@@ -19,6 +19,13 @@ public class WordSorter
 			return;
 		}	
 		String word = "";
+		ArrayList[]sorted = new ArrayList[26];
+		for (int x = 0; x < sorted.length; x++)
+		{
+			sorted[x] = new ArrayList <String>();
+		}//end for
+		
+
 		while(in.hasNext())
 		{
 			word = in.next();
@@ -35,31 +42,51 @@ public class WordSorter
 			word = word.toLowerCase();
 			System.out.println(word);
 			words.add(word);
-				
-			
-			
-		}//end while
-		for(int q = words.size()-1; q > 1; q--)
-		{
-			for(int w = q - 1; w > 0; w--)
+			for(int q = 0; q < words.size(); q++)
 			{
-				if(words.get(q).equals(words.get(w)))
+				if(word.equals(words.get(q)))
 				{
-					words.remove(q);
+					words.remove(word);
 				}//end if
 			}//end for
-		}//end for
-
-		ArrayList[]sorted = new ArrayList[26];
-		for(int x = 0; x < sorted.length; x++)
-		{
-			sorted[x] = new ArrayList<String>();
-			for(ArrayList temp: sorted)
+			for(String temp: words)
 			{
-				temp.add(words.get(x).compareTo("a"), words.get(x));
-
-				System.out.println(words.get(x));
+				sorted[temp.compareTo("a")].add(word);
 			}//end for each
-		}//end for
+		}//end while
+		int choice = 0;
+		while(choice != 6)
+		{
+			System.out.println("Hello, you have the following options:");
+			System.out.println("1. Print out all words starting with a specific letter  ");
+			System.out.println("2. Print out all words ");
+			System.out.println("3. Print out the total number of unique words  ");
+			System.out.println("4. Search and determine if a word is in the article  ");
+			System.out.println("5. Remove a word from the data structure  ");
+			System.out.println("6. Exit");
+			choice = in.nextInt();
+			if(choice == 1)
+			{
+
+			}
+			if(choice == 2)
+			{
+
+			}
+			if(choice == 3)
+			{
+
+			}
+			if(choice == 4)
+			{
+
+			}
+			if(choice == 5)
+			{
+
+			}
+		}//end while
+		
+		
 	}//end main
 }//end class
