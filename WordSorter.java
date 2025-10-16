@@ -25,6 +25,7 @@ public class WordSorter
 			sorted[x] = new ArrayList <String>();
 		}//end for
 		
+		
 
 		while(in.hasNext())
 		{
@@ -41,24 +42,27 @@ public class WordSorter
 			word = word.replace("'", "");
 			word = word.toLowerCase();
 			System.out.println(word);
-			words.add(word);
+			boolean t = false;
 			for(int q = 0; q < words.size(); q++)
 			{
 				if(word.equals(words.get(q)))
 				{
-					words.remove(word);
+					t = true;
 				}//end if
 			}//end for
-			for(String temp: words)
+			if (t == false)
 			{
-				sorted[temp.compareTo("a")].add(word);
-			}//end for each
+				words.add(word);
+				sorted[word.substring(0, 1).compareTo("a")].add(word);
+			}//end if
+
+			
 		}//end while
 		int choice = 0;
 		in = new Scanner(System.in);
 		while(choice != 6)
 		{
-			System.out.println("Hello, you have the following options:");
+			System.out.println("You have the following options:");
 			System.out.println("1. Print out all words starting with a specific letter  ");
 			System.out.println("2. Print out all words ");
 			System.out.println("3. Print out the total number of unique words  ");
@@ -78,33 +82,34 @@ public class WordSorter
 				else
 				{
 					System.out.println("No words start with this letter.");
-				}
+				}//end else
 			}//end if
 			if(choice == 2)
 			{
 				if(words.size() != 0)
 				{
 					System.out.println(words);
-				}
+				}//end if
 				else
 				{
 					System.out.println("Empty list");
-				}
+				}//end else
 			}//end if
 			if(choice == 3)
 			{
 				if(words.size() != 0)
 				{
 					System.out.println("There are " + words.size() + " unique words in the article");
-				}
+				}//end if
 				else
 				{
 					System.out.println("Empty list");
-				}
+				}//end else
 			}//end if
 			if(choice == 4)
 			{
 				System.out.println("Please enter the word you would like to find:");
+				in.nextLine();
 				String find = in.nextLine();
 				boolean found = false;
 				for(int i=0; i<words.size(); i++)
@@ -115,7 +120,7 @@ public class WordSorter
 						found = true;
 					}//end else
 				}//end for
-				if(found = false)
+				if(found == false)
 				{
 					System.out.println("Word NOT found in article.");
 				}//end if
@@ -123,6 +128,7 @@ public class WordSorter
 			if(choice == 5)
 			{
 				System.out.println("Please enter the word you would like to remove:");
+				in.nextLine();
 				String delete = in.nextLine();
 				boolean found = false;
 				for(int i=0; i<words.size(); i++)
@@ -130,6 +136,13 @@ public class WordSorter
 					if(words.get(i).equals(delete))
 					{
 						words.remove(i);
+						for(int o = 0; o < sorted[delete.substring(0, 1).compareTo("a")].size(); o++)
+						{
+							if(sorted[delete.substring(0, 1).compareTo("a")].get(o).equals(delete))
+							{
+								sorted[delete.substring(0, 1).compareTo("a")].remove(o);
+							}//end if
+						}//end for
 						found = true;
 					}//end if
 				}//end for
