@@ -1,5 +1,5 @@
 //Meade Havenstein, Pd. 6, 10/9/25
-//Objective: 
+//Objective: Reads out all uniques words in a text, and those added by user. Can give information about all words in list.
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -60,6 +60,32 @@ public class WordSorter
 		}//end while
 		int choice = 0;
 		in = new Scanner(System.in);
+		System.out.println("Would you like to add any other words to the list? If not enter x.");
+		word = in.nextLine();
+		while(word.equals("x") != true)
+		{	
+			boolean t = false;
+			for(int q = 0; q < words.size(); q++)
+			{
+				if(word.equals(words.get(q)))
+				{
+					t = true;
+				}//end if
+			}//end for
+			if (t == false)
+			{
+				words.add(word);
+				sorted[word.substring(0, 1).compareTo("a")].add(word);
+				System.out.println("word successfully added.");
+			}//end if
+			else
+			{
+				System.out.println("Word already in list.");
+				word="";
+			}//end else
+			System.out.println("Would you like to add any other words to the list? If not enter x.");
+			word = in.nextLine();
+		}//end while
 		while(choice != 6)
 		{
 			System.out.println("You have the following options:");
